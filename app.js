@@ -26,10 +26,9 @@ app.use("/categories", categoriesRoute);
 app.use("/tools", toolsRoute);
 app.use("/files", filesRoute);
 
-// app.use(function(err, req, res, next) {
-//     console.error(err.stack);
-//     res.status(500).send('Something broke!');
-// });
+app.get('/', (req, res) => {
+    res.json('Home');
+})
 
 app.listen(3000, () => console.log("App is running on http://localhost:3000"));
 
