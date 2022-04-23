@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+var mongoose = require("mongoose");
 
 const ToolSchema = new mongoose.Schema({
     name: {
@@ -9,4 +9,4 @@ const ToolSchema = new mongoose.Schema({
 
 const Tool = mongoose.model("Tool", ToolSchema);
 
-export { Tool, ToolSchema }
+module.exports = { Tool, ToolSchema }

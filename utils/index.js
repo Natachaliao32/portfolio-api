@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync } from "fs";
-import { Project } from "./../models/Project.js";
+var { existsSync, mkdirSync } = require("fs");
+var { Project } = require("./../models/Project.js");
 
 const changeName = (name, names, index) => {
     let newName = `${name}_${index}`;
@@ -60,4 +60,4 @@ const uploadFiles = async (projectId, files) => {
     }
 }
 
-export { uploadFiles, changeName }
+module.exports = { uploadFiles, changeName }

@@ -1,10 +1,8 @@
-import express from "express";
-import mongoose from "mongoose";
-import { Project } from "./../models/Project.js";
-import { Category } from "../models/Category.js";
-import { Tool } from "../models/Tool.js";
-import { uploadFiles } from "../utils/index.js";
-import * as fsPromises from "fs/promises";
+var express = require('express');
+var mongoose = require('mongoose');
+var { Project } = require('./../models/Project.js');
+var { uploadFiles } = require("../utils/index.js");
+var fsPromises = require("fs/promises");
 
 const router = express.Router();
 
@@ -145,4 +143,4 @@ router.patch('/:id', async (req, res) => {
     }
 })
 
-export default router;
+module.exports.router = router;

@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import { CategorySchema } from "./Category.js";
-import { ToolSchema } from "./Tool.js";
-import { MediaSchema } from "./Media.js";
+var mongoose = require("mongoose");
+var { CategorySchema } = require("./Category.js");
+var { ToolSchema } = require("./Tool.js");
+var { MediaSchema } = require("./Media.js");
 
 const ProjectSchema = new mongoose.Schema({
     name : {
@@ -53,4 +53,4 @@ const ProjectSchema = new mongoose.Schema({
 
 const Project = mongoose.model("Project", ProjectSchema);
 
-export { Project, ProjectSchema }
+module.exports = { Project, ProjectSchema }

@@ -1,5 +1,5 @@
-import express from "express";
-import { Tool } from "../models/Tool.js";
+var express = require("express");
+var { Tool } = require("../models/Tool.js");
 
 const router = express.Router();
 
@@ -42,4 +42,4 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-export default router;
+module.exports.router = router;

@@ -1,7 +1,7 @@
-import express from "express";
-import { existsSync, mkdirSync, unlink } from "fs";
-import { changeName } from "../utils/index.js";
-import { Project } from "./../models/Project.js";
+var express = require("express");
+var { existsSync, mkdirSync, unlink } = require("fs");
+var { changeName } = require("../utils/index.js");
+var { Project } = require("./../models/Project.js");
 
 const router = express.Router();
 
@@ -58,4 +58,4 @@ router.delete('/', (req, res) => {
     }
 })
 
-export default router;
+module.exports.router = router;

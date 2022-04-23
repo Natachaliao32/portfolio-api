@@ -1,16 +1,16 @@
 // IMPORT
 
-import express from "express";
-import mongoose from "mongoose";
-import "dotenv/config";
-import bodyParser from "body-parser";
-import projectsRoute from "../functions/projects.js";
-import categoriesRoute from "../functions/categories.js";
-import toolsRoute from "../functions/tools.js";
-import filesRoute from "../functions/files.js";
-import cors from "cors";
-import upload from "express-fileupload";
-import serverless from "serverless-http";
+const express = require('express');
+const mongoose = require('mongoose');
+require('dotenv').config();
+const bodyParser = require("body-parser");
+const {router: projectsRoute} = require("../functions/projects.js");
+const {router: categoriesRoute} = require("../functions/categories.js");
+const {router: toolsRoute} = require("../functions/tools.js");
+const {router: filesRoute} = require("../functions/files.js");
+const cors = require('cors');
+const upload = require('express-fileupload');
+const serverless = require("serverless-http");
 
 const app = express();
 
@@ -21,23 +21,31 @@ app.use(cors());
 app.use(upload());
 app.use("/.netlify/functions/files", express.static("assets"));
 
+const router = express.Router();
+
+router.get('/', (req, res) => {
+    res.json({
+        "hello": "hi"
+    });
+})
+app.use('/.netlify/functions/app', router);
+
 // ROUTES
 
-app.use("/.netlify/functions/projects", projectsRoute);
-app.use("/.netlify/functions/categories", categoriesRoute);
-app.use("/.netlify/functions/tools", toolsRoute);
-app.use("/.netlify/functions/files", filesRoute);
+app.use("/.netlify/functions/app/projects", projectsRoute);
+app.use("/.netlify/functions/app/categories", categoriesRoute);
+app.use("/.netlify/functions/app/tools", toolsRoute);
+app.use("/.netlify/functions/app/files", filesRoute);
 
-app.get('/', (req, res) => {
-    res.json('Home');
-})
 
-app.listen(3000, () => console.log("App is running on http://localhost:3000"));
+// app.listen(3000, () => console.log("App is running on http://localhost:3000"));
 
-export const handler = serverless(app);
 
 // CONNECT TO DB
 
 mongoose.connect(process.env.DB_CONNECTION, () => {
     console.log('Connected to the database');
 })
+
+
+module.exports.handler = serverless(app);
